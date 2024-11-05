@@ -1,4 +1,7 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import { setItemToLocalStorage } from "../../localstorage/localStorage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BookDetails = () => {
   const books = useLoaderData();
@@ -20,7 +23,7 @@ const BookDetails = () => {
   } = book;
   console.log(book);
   return (
-    <div className="flex gap-24 mt-12 items-center  mx-16">
+    <div className="flex gap-24 my-12 items-center  mx-16">
       <div className=" shadow-xl py-12  flex ">
         <img src={image} alt="" className="min-w-96 mx-auto" />
       </div>
@@ -59,12 +62,23 @@ const BookDetails = () => {
           Rating: <span className="font-bold">{rating}</span>
         </p>
         <div className="gap-8 flex">
-          <button className="py-2 px-6 border-2 hover:bg-gray-200 rounded font-bold">
+          <button
+            onClick={() => {
+              setItemToLocalStorage(bookId, "read-list");
+            }}
+            className="py-2 px-6 border-2 hover:bg-gray-200 rounded font-bold"
+          >
             Read
           </button>
-          <button className="py-2 px-6 bg-blue-500 hover:bg-blue-600 rounded text-white font-bold">
+          <button
+            onClick={() => {
+              setItemToLocalStorage(bookId, "wish-list");
+            }}
+            className="py-2 px-6 bg-blue-500 hover:bg-blue-600 rounded text-white font-bold"
+          >
             Wishlist
           </button>
+          <ToastContainer autoClose={2000} theme="dark" />
         </div>
       </div>
     </div>
