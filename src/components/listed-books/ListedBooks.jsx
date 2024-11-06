@@ -27,36 +27,47 @@ const ListedBooks = () => {
   console.log(readList, wishlist);
 
   return (
-    <div role="tablist" className="tabs tabs-lifted">
-      <input
-        type="radio"
-        name="my_tabs_2"
-        role="tab"
-        className="tab"
-        aria-label="Tab 1"
-      />
-      <div
-        role="tabpanel"
-        className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-      >
-        {readList.map((book) => (
-          <ListedBookCard key={book.bookId} book={book}></ListedBookCard>
-        ))}
+    <div>
+      <div className="bg-gray-200 p-4 rounded my-8">
+        <h1 className="text-4xl font-bold text-center">Book</h1>
       </div>
+      <div role="tablist" className="tabs tabs-lifted">
+        <input
+          type="radio"
+          name="my_tabs_1"
+          role="tab"
+          className="tab"
+          aria-label="Read Books"
+          defaultChecked
+        />
 
-      <input
-        type="radio"
-        name="my_tabs_2"
-        role="tab"
-        className="tab"
-        aria-label="Tab 2"
-        defaultChecked
-      />
-      <div
-        role="tabpanel"
-        className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-      >
-        Wishlist Books {wishlist.length}
+        <div
+          role="tabpanel"
+          className="tab-content bg-base-100 border-base-300 rounded-box p-6"
+        >
+          <div className="grid gap-6">
+            {readList.map((book) => (
+              <ListedBookCard key={book.bookId} book={book}></ListedBookCard>
+            ))}
+          </div>
+        </div>
+        <input
+          type="radio"
+          name="my_tabs_1"
+          role="tab"
+          className="tab"
+          aria-label="wishlist Books"
+        />
+        <div
+          role="tabpanel"
+          className="tab-content bg-base-100 border-base-300 rounded-box p-6"
+        >
+          <div className="grid gap-6">
+            {wishlist.map((book) => (
+              <ListedBookCard key={book.bookId} book={book}></ListedBookCard>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
